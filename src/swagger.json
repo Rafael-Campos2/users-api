@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Atlas",
+    "description": "Essa é uma documentação sobre a Atlas API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "john@atlas.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Cria um novo usuário",
+        "description": "Rota para criação de um novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "name": "Rafael Silva De Campos",
+                "email": "rafael.campos@atlas.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Operação realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Lista todos os usuários",
+        "description": "Somente usuário admin pode acessar."
+      }
+    }
+  }
+}
